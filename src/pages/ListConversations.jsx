@@ -27,12 +27,12 @@ export default function ListConversations({
     return (
       <div
         onClick={() => {
-          setOpen(false);
           setConversation(datas);
           handleSelect(conversation._id);
           setConversationId(conversation._id);
           setFriend(whoIsFriend(user_data.id, conversation.participants));
           set_loading_messages(false);
+          setOpen(false);
         }}
         className={`
           ${selected == conversation._id && "bg-base-100"} 
