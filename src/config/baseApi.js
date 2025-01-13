@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const host = process.env.BACKEND_HOST;
+const host = import.meta.env.VITE_BACKEND_HOST;
+console.log("host:" + host);
 
 export const apiAuth = axios.create({
   baseURL: host,

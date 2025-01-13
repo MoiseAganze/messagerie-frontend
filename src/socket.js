@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-export const socket = io(process.env.BACKEND_HOST, {
+export const socket = io(import.meta.env.VITE_BACKEND_HOST, {
   withCredentials: true,
   transports: ["websocket"],
 });
