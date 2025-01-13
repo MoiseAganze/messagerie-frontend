@@ -31,7 +31,7 @@ export default function MessagesCont({ conversation, loading }) {
   return (
     <div
       ref={boxRef}
-      className="w-full h-screen overflow-y-auto flex justify-center"
+      className="w-full h-4/5 lg:h-full overflow-y-auto flex justify-center"
     >
       <div className="w-full lg:w-2/3 flex flex-col gap-2 mb-48 px-4 lg:px-8 pt-10">
         {conversation.length > 0 ? (

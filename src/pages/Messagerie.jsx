@@ -91,11 +91,11 @@ export default function Messagerie() {
   return (
     <div className="h-screen overflow-hidden flex flex-col">
       <AddFriend />
-      <div className="w-full h-full flex">
+      <div className="w-full h-full flex relative">
         <div
-          className={`absolute -left-96 z-40 top-0 lg:static ${
-            open ? "translate-x-96" : "translate-x-0"
-          } w-96 lg:flex justify-center bg-base-300 h-screen transition`}
+          className={`absolute -left-72 lg:-left-96 z-40 top-0 lg:static ${
+            open ? "translate-x-72 lg:translate-x-96" : "translate-x-0"
+          } w-72 lg:w-96 lg:flex justify-center bg-base-300 h-screen transition`}
         >
           <div className="w-full min-height-screen">
             <Navbar2 set_side_index={set_side_index} />
