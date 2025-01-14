@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../config/baseApi";
 
 export default function ListConversations({
+  loading,
   open,
   setOpen,
   conversations,
@@ -92,9 +93,21 @@ export default function ListConversations({
   };
   return (
     <div className="flex flex-col gap-1 mt-3 overflow-x-hidden">
-      {conversations?.map((item, i) => (
-        <Message key={i} conversation={item} />
-      ))}
+      {loading ? (
+        <div className="flex flex-col gap-3 pt-5 overflow-x-hidden">
+          {[1, 2, 3, 4].map((item, i) => (
+            <div key={i} className="flex items-center gap-4">
+              <div className="skeleton h-14 w-14 shrink-0 rounded-full"></div>
+              <div className="flex flex-col gap-4">
+                <div className="skeleton h-4 w-20"></div>
+                <div className="skeleton h-4 w-28"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        conversations?.map((item, i) => <Message key={i} conversation={item} />)
+      )}
       {loading_click && (
         <div
           className="w-screen h-screen fixed top-0 left-0 bg-base-300 opacity-50 flex justify-center items-center"

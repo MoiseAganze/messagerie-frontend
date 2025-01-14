@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import AddFriend from "../components/AddFriend";
 import ListFriendRequests from "./ListFriendRequests";
 import ListFriends from "./ListFriends";
+import { api } from "../config/baseApi";
 export default function Messagerie() {
   const nav = useNavigate();
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function Messagerie() {
       nav("/login");
     }
   }, []);
-  const { datas, loading } = useFetch("/conversations", nav);
+  const [loading, setLoading] = useState(true);
   const [newConversations, setNewConversations] = useState([]);
   const { user_data } = userData();
   const [conversationSelected, setConversationSelected] = useState(null);
@@ -29,6 +30,24 @@ export default function Messagerie() {
   const [friend, setFriend] = useState(null);
   const [loading_messages, set_loading_messages] = useState(true);
   const [side_index, set_side_index] = useState(0);
+
+  useEffect(() => {
+    const fetch_datas = async () => {
+      await api
+        .get("/conversations")
+        .then((res) => {
+          setNewConversations(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          nav("/login");
+        })
+        .finally(() => setLoading(false));
+    };
+    fetch_datas();
+  }, [side_index]);
+
   useEffect(() => {
     socket.emit("user-connected", user_data.id);
 
@@ -64,11 +83,6 @@ export default function Messagerie() {
       // socket.disconnect();
     };
   }, [conversationSelected]);
-  useEffect(() => {
-    if (datas) {
-      setNewConversations(datas);
-    }
-  }, [datas]);
 
   const sendMessage = (senderId, conversationId, text) => {
     console.log("conv Id: " + conversationId);
@@ -107,6 +121,7 @@ export default function Messagerie() {
                 setConversationId={setConversationSelectedId}
                 user_data={user_data}
                 conversations={newConversations}
+                loading={loading}
                 setFriend={setFriend}
                 set_loading_messages={set_loading_messages}
               />

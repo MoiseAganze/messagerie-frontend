@@ -6,7 +6,7 @@ export const useFetch = (url, nav) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchDatas = async () => {
-      api
+      await api
         .get(url)
         .then((res) => {
           setDatas(res.data);
