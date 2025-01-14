@@ -18,12 +18,12 @@ export default function ListConversations({
   setConversationId,
 }) {
   const [selected, setSelected] = useState(null);
+  const [loading_click, set_loading_click] = useState(false);
   const handleSelect = (item) => {
     setSelected(item);
   };
   const Message = ({ conversation }) => {
     const nav = useNavigate();
-    const [loading_click, set_loading_click] = useState(false);
     const handleClick = async () => {
       set_loading_click(true);
 
@@ -95,6 +95,14 @@ export default function ListConversations({
       {conversations?.map((item, i) => (
         <Message key={i} conversation={item} />
       ))}
+      {loading_click && (
+        <div
+          className="w-screen h-screen fixed top-0 left-0 bg-base-300 opacity-50 flex justify-center items-center"
+          style={{ zIndex: 9999999 }}
+        >
+          <span className="loading  loading-lg loading-bars text-accent"></span>
+        </div>
+      )}
     </div>
   );
 }
