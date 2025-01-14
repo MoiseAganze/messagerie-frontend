@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar2 } from "../components/Nav";
 import { formatHourMinute } from "../utils/formatsDate";
 import { useFetch } from "../hooks/useFetch";
@@ -22,12 +22,20 @@ export default function ListConversations({
   };
   const Message = ({ conversation }) => {
     const nav = useNavigate();
+    const [waitingData, setWaitingData] = useState(null);
     const { datas, loading } = useFetch(`/messages/${conversation._id}`, nav);
+    useEffect(() => {
+      if (datas) {
+        console.log(datas);
+
+        setWaitingData(datas);
+      }
+    }, [datas]);
 
     return (
       <div
         onClick={() => {
-          setConversation(datas);
+          setConversation(waitingData);
           handleSelect(conversation._id);
           setConversationId(conversation._id);
           setFriend(whoIsFriend(user_data.id, conversation.participants));
