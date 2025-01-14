@@ -51,9 +51,9 @@ const ListFriends = () => {
           {datas?.map((item, i) => (
             <Item
               key={i}
-              pseudo={item.sender.name}
-              id={item.sender._id}
-              avatar={item.sender.avatar}
+              pseudo={item.name}
+              id={item.id}
+              avatar={item.avatar}
             />
           ))}
         </div>
