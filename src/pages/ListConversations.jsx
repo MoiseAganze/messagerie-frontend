@@ -5,6 +5,7 @@ import { useFetch } from "../hooks/useFetch";
 import { reduceText } from "../utils/reduceText";
 import { whoIsFriend } from "../utils/whoIsFriend";
 import { useNavigate } from "react-router-dom";
+import { api } from "../config/baseApi";
 
 export default function ListConversations({
   open,
@@ -22,26 +23,29 @@ export default function ListConversations({
   };
   const Message = ({ conversation }) => {
     const nav = useNavigate();
-    const [waitingData, setWaitingData] = useState(null);
-    const { datas, loading } = useFetch(`/messages/${conversation._id}`, nav);
-    useEffect(() => {
-      if (datas) {
-        console.log(datas);
+    const [loading_click, set_loading_click] = useState(false);
+    const handleClick = async () => {
+      set_loading_click(true);
 
-        setWaitingData(datas);
-      }
-    }, [datas]);
-
-    return (
-      <div
-        onClick={() => {
-          setConversation(waitingData);
+      await api
+        .get(`/messages/${conversation._id}`)
+        .then((res) => {
+          setConversation(res.data);
           handleSelect(conversation._id);
           setConversationId(conversation._id);
           setFriend(whoIsFriend(user_data.id, conversation.participants));
           set_loading_messages(false);
           setOpen(false);
-        }}
+          set_loading_click(false);
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => set_loading_click(false));
+    };
+    return (
+      <div
+        onClick={handleClick}
         className={`
           ${selected == conversation._id && "bg-base-100"} 
           ${"bg-base-100"} w-full flex justify-start gap-1 rounded-3xl py-2 px-3 cursor-pointer transition hover:translate-x-2`}
