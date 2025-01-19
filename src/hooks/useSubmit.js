@@ -86,10 +86,10 @@ export default function useSubmit(
 
         if (res.status === 201 || res.status === 200) {
           localStorage.setItem("kento", res.data.token);
-          toast.success(success_message, { duration: 2000 });
+          toast.success(success_message + ",patientez...", { duration: 5000 });
           setTimeout(() => {
             nav(redirect);
-          }, 2000);
+          }, 5000);
         }
       })
       .catch((error) => {

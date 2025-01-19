@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Navbar2 } from "../components/Nav";
 import ListConversations from "./ListConversations";
 import { socket } from "../socket";
@@ -7,11 +7,16 @@ import MessagesCont from "../components/MessagesCont";
 import axios from "axios";
 import { useFetch } from "../hooks/useFetch";
 import { userData } from "../hooks/userData";
-import { useNavigate } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  UNSAFE_NavigationContext as NavigationContext,
+} from "react-router-dom";
 import AddFriend from "../components/AddFriend";
 import ListFriendRequests from "./ListFriendRequests";
 import ListFriends from "./ListFriends";
 import { api } from "../config/baseApi";
+
 export default function Messagerie() {
   const nav = useNavigate();
   useEffect(() => {
@@ -20,6 +25,7 @@ export default function Messagerie() {
       nav("/login");
     }
   }, []);
+
   const [loading, setLoading] = useState(true);
   const [newConversations, setNewConversations] = useState([]);
   const { user_data } = userData();
