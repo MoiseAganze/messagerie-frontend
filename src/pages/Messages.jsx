@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/Nav";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import MessagesCont from "../components/MessagesCont";
 import InputCont from "../components/InputMessage";
@@ -12,6 +12,7 @@ const Messages = () => {
   const { id, friendid } = useParams();
   const user_data = userData();
   const nav = useNavigate();
+  const location = useLocation();
   const socket = useSocket();
   const sendMessage = (senderId, conversationId, text) => {
     console.log("conv Id: " + conversationId);
@@ -41,9 +42,10 @@ const Messages = () => {
         .catch((err) => {
           console.log(err);
           seterror(err);
-          if (redirect) {
-            nav("/login");
-          }
+
+          localStorage.setItem("redirect", location.pathname);
+
+          nav("/login");
         })
         .finally(() => setLoading(false));
     };

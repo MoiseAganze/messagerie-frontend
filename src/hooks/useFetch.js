@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { api } from "../config/baseApi";
+import { useLocation } from "react-router-dom";
 
 export const useFetch = (url, nav, redirect = true) => {
   const [datas, setDatas] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, seterror] = useState(null);
+  const location = useLocation();
   useEffect(() => {
     const fetchDatas = async () => {
       await api
@@ -14,9 +16,10 @@ export const useFetch = (url, nav, redirect = true) => {
           console.log(res.data);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(location.pathname);
           seterror(err);
           if (redirect) {
+            localStorage.setItem("redirect", location.pathname);
             nav("/login");
           }
         })

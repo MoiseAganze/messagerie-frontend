@@ -12,7 +12,6 @@ export default function useSubmit(
 ) {
   const [loading, setLoading] = useState(false);
   const [datasForm, setDatasForm] = useState(structure);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setDatasForm({
@@ -86,9 +85,17 @@ export default function useSubmit(
 
         if (res.status === 201 || res.status === 200) {
           localStorage.setItem("kento", res.data.token);
+
           toast.success(success_message + ",patientez...", { duration: 5000 });
           setTimeout(() => {
-            nav(redirect);
+            const redirect_saved = localStorage.getItem("redirect");
+
+            if (redirect_saved) {
+              nav(redirect_saved);
+              localStorage.removeItem("redirect");
+            } else {
+              nav(redirect);
+            }
           }, 5000);
         }
       })

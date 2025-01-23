@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 const AllProfile = () => {
   const nav = useNavigate();
   const { id } = useParams();
-  const { loading, datas, error } = useFetch(`/user/${id}`, nav, false);
+  const { loading, datas, error } = useFetch(`/user/${id}`, nav, true);
   const [loading_req, set_loading_req] = useState(false);
 
   return (
