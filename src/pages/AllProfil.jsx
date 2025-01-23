@@ -87,18 +87,30 @@ const AllProfile = () => {
                       </>
                     )}
                   </button>
-
-                  <Link
-                    to={`/conversation/${datas?.data?.id_conv}/${id}`}
-                    disabled={!datas.is_user_friend}
-                    className={`text-center flex-1 rounded-full ${
-                      datas.is_user_friend
-                        ? "bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900"
-                        : "border-2 border-gray-400 dark:border-gray-700 font-semibold text-black dark:text-white"
-                    } px-4 py-2`}
-                  >
-                    Message
-                  </Link>
+                  {datas.is_user_friend ? (
+                    <Link
+                      to={`/conversation/${datas?.data?.id_conv}/${id}`}
+                      disabled={!datas.is_user_friend}
+                      className={`text-center flex-1 rounded-full ${
+                        datas.is_user_friend
+                          ? "bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900"
+                          : "border-2 border-gray-400 dark:border-gray-700 font-semibold text-black dark:text-white"
+                      } px-4 py-2`}
+                    >
+                      Message
+                    </Link>
+                  ) : (
+                    <button
+                      disabled={datas.is_user_friend}
+                      className={`text-center flex-1 rounded-full ${
+                        datas.is_user_friend
+                          ? "bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900"
+                          : "border-2 border-gray-400 dark:border-gray-700 font-semibold text-black dark:text-white"
+                      } px-4 py-2`}
+                    >
+                      Message
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
