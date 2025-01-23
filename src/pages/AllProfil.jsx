@@ -89,7 +89,7 @@ const AllProfile = () => {
                   </button>
 
                   <Link
-                    to={`/conversation/${datas.data.id_conv}/${id}`}
+                    to={`/conversation/${datas?.data?.id_conv}/${id}`}
                     disabled={!datas.is_user_friend}
                     className={`text-center flex-1 rounded-full ${
                       datas.is_user_friend
