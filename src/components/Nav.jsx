@@ -38,7 +38,7 @@ export function Navbar({ titre, handleOpen, user_data }) {
       <div className="avatar placeholder">
         <Link
           to={`/profil`}
-          className="bg-orange-700 text-sky-100  w-12 h-12 rounded-full flex justify-center items-center ring"
+          className="bg-orange-700 text-sky-100  w-8 h-8 rounded-full flex justify-center items-center ring"
         >
           <span className="text-xl font-bold">{user_data?.name[0]}</span>
         </Link>

@@ -2755,12 +2755,12 @@ input.tab:checked + .tab-content,
   left: -18rem;
 }
 
-.bottom-2 {
-  bottom: 0.5rem;
+.bottom-12 {
+  bottom: 3rem;
 }
 
-.bottom-40 {
-  bottom: 10rem;
+.bottom-2 {
+  bottom: 0.5rem;
 }
 
 .left-0 {
@@ -2781,10 +2781,6 @@ input.tab:checked + .tab-content,
 
 .top-1 {
   top: 0.25rem;
-}
-
-.bottom-10 {
-  bottom: 2.5rem;
 }
 
 .z-40 {
@@ -2817,6 +2813,10 @@ input.tab:checked + .tab-content,
   margin-bottom: 0.25rem;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -2843,10 +2843,6 @@ input.tab:checked + .tab-content,
 
 .mt-6 {
   margin-top: 1.5rem;
-}
-
-.mb-80 {
-  margin-bottom: 20rem;
 }
 
 .flex {
@@ -2885,10 +2881,6 @@ input.tab:checked + .tab-content,
   height: 1rem;
 }
 
-.h-4\/5 {
-  height: 80%;
-}
-
 .h-5 {
   height: 1.25rem;
 }
@@ -2905,6 +2897,14 @@ input.tab:checked + .tab-content,
   height: 2rem;
 }
 
+.h-\[calc\(100vh-200px\)\] {
+  height: calc(100vh - 200px);
+}
+
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
 }
@@ -2915,10 +2915,6 @@ input.tab:checked + .tab-content,
 
 .h-screen {
   height: 100vh;
-}
-
-.h-auto {
-  height: auto;
 }
 
 .min-h-96 {
@@ -3105,8 +3101,8 @@ input.tab:checked + .tab-content,
   border-radius: 0.5rem;
 }
 
-.border-0 {
-  border-width: 0px;
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 
 .border-2 {
@@ -3251,14 +3247,6 @@ input.tab:checked + .tab-content,
 
 .pt-5 {
   padding-top: 1.25rem;
-}
-
-.pb-40 {
-  padding-bottom: 10rem;
-}
-
-.pb-80 {
-  padding-bottom: 20rem;
 }
 
 .text-center {
@@ -3431,6 +3419,22 @@ input.tab:checked + .tab-content,
   opacity: 1;
 }
 
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-0:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.active\:outline-none:active {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 @media (min-width: 768px) {
   .md\:w-auto {
     width: auto;
@@ -3446,10 +3450,6 @@ input.tab:checked + .tab-content,
     left: -24rem;
   }
 
-  .lg\:bottom-10 {
-    bottom: 2.5rem;
-  }
-
   .lg\:flex {
     display: flex;
   }
@@ -3458,16 +3458,8 @@ input.tab:checked + .tab-content,
     display: none;
   }
 
-  .lg\:h-full {
-    height: 100%;
-  }
-
   .lg\:w-1\/2 {
     width: 50%;
-  }
-
-  .lg\:w-2\/3 {
-    width: 66.666667%;
   }
 
   .lg\:w-96 {

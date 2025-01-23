@@ -16,6 +16,9 @@ export default function MessagesCont({ conversation, loading }) {
         >
           {texte}
         </div>
+        <div className="chat-footer">
+          <div className="text-xs opacity-50">{isUser && "✓✓"}</div>
+        </div>
       </div>
     );
   };
@@ -23,16 +26,20 @@ export default function MessagesCont({ conversation, loading }) {
   const boxRef = useRef(null);
 
   useEffect(() => {
-    // Défiler vers le bas lorsque le composant est monté
-    boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    if (boxRef.current) {
+      boxRef.current.scrollTo({
+        top: boxRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }, [conversation]);
 
   return (
     <div
       ref={boxRef}
-      className="w-full h-full overflow-y-auto flex justify-center"
+      className="w-full h-[calc(100vh-200px)] overflow-y-auto" // Modifié ici
     >
-      <div className="w-full h-auto lg:w-2/3 flex flex-col gap-2 px-4 lg:px-8 pt-10 mb-80">
+      <div className="w-full h-auto flex flex-col justify-end gap-2 px-4 lg:px-8 pt-10 mb-20">
         {conversation && conversation.length > 0 ? (
           TrieMessage(conversation).map((msgGroup, index) => (
             <div key={index}>
