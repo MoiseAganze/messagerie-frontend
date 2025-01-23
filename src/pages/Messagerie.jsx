@@ -11,9 +11,13 @@ import AddFriend from "../components/AddFriend";
 import ListFriendRequests from "./ListFriendRequests";
 import ListFriends from "./ListFriends";
 import { useSocket } from "../utils/socketContext";
+import ListConversationsParent from "../components/ListConversationsParent";
 
 export default function Messagerie() {
   const nav = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll en haut de la page
+  }, []);
   useEffect(() => {
     const token = localStorage.getItem("kento");
     if (!token) {
@@ -55,7 +59,9 @@ export default function Messagerie() {
         >
           <div className="w-full min-height-screen">
             <Navbar2 set_side_index={set_side_index} />
-            {side_index == 0 && <ListConversations handleOpen={handleOpen} />}
+            {side_index == 0 && (
+              <ListConversationsParent handleOpen={handleOpen} />
+            )}
             {side_index == 1 && <ListFriends />}
             {side_index == 2 && (
               <ListFriendRequests set_side_index={set_side_index} />

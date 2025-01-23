@@ -2763,8 +2763,8 @@ input.tab:checked + .tab-content,
   left: -18rem;
 }
 
-.bottom-12 {
-  bottom: 3rem;
+.bottom-16 {
+  bottom: 4rem;
 }
 
 .bottom-2 {
@@ -2789,14 +2789,6 @@ input.tab:checked + .tab-content,
 
 .top-1 {
   top: 0.25rem;
-}
-
-.bottom-10 {
-  bottom: 2.5rem;
-}
-
-.bottom-16 {
-  bottom: 4rem;
 }
 
 .z-40 {
@@ -2829,10 +2821,6 @@ input.tab:checked + .tab-content,
   margin-bottom: 0.25rem;
 }
 
-.mb-20 {
-  margin-bottom: 5rem;
-}
-
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -2861,16 +2849,16 @@ input.tab:checked + .tab-content,
   margin-top: 1.5rem;
 }
 
-.mb-32 {
-  margin-bottom: 8rem;
-}
-
 .flex {
   display: flex;
 }
 
 .inline-flex {
   display: inline-flex;
+}
+
+.hidden {
+  display: none;
 }
 
 .h-10 {
@@ -2915,10 +2903,6 @@ input.tab:checked + .tab-content,
 
 .h-8 {
   height: 2rem;
-}
-
-.h-\[calc\(100vh-200px\)\] {
-  height: calc(100vh - 200px);
 }
 
 .h-auto {
@@ -3003,6 +2987,14 @@ input.tab:checked + .tab-content,
 
 .w-screen {
   width: 100vw;
+}
+
+.w-36 {
+  width: 9rem;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .min-w-20 {
@@ -3253,6 +3245,10 @@ input.tab:checked + .tab-content,
   padding-bottom: 1.5rem;
 }
 
+.pb-72 {
+  padding-bottom: 18rem;
+}
+
 .pl-10 {
   padding-left: 2.5rem;
 }
@@ -3267,18 +3263,6 @@ input.tab:checked + .tab-content,
 
 .pt-5 {
   padding-top: 1.25rem;
-}
-
-.pb-32 {
-  padding-bottom: 8rem;
-}
-
-.pb-80 {
-  padding-bottom: 20rem;
-}
-
-.pb-72 {
-  padding-bottom: 18rem;
 }
 
 .text-center {
@@ -3442,6 +3426,16 @@ input.tab:checked + .tab-content,
   background-color: rgb(153 27 27 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-base-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity, 1)));
+}
+
+.hover\:bg-base-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity, 1)));
+}
+
 .hover\:text-warning:hover {
   --tw-text-opacity: 1;
   color: var(--fallback-wa,oklch(var(--wa)/var(--tw-text-opacity, 1)));
@@ -3480,14 +3474,6 @@ input.tab:checked + .tab-content,
 
   .lg\:-left-96 {
     left: -24rem;
-  }
-
-  .lg\:mb-40 {
-    margin-bottom: 10rem;
-  }
-
-  .lg\:mb-52 {
-    margin-bottom: 13rem;
   }
 
   .lg\:flex {

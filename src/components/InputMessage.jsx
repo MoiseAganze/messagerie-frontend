@@ -11,8 +11,10 @@ export default function InputCont({ sendMessage, user_data, id }) {
     }
   };
   const handleclick = () => {
-    if (message != "") {
-      sendMessage(user_data.id, id, message);
+    const trimmedMessage = message.trim();
+
+    if (trimmedMessage !== "") {
+      sendMessage(user_data.id, id, trimmedMessage);
       setMessage("");
     }
   };
