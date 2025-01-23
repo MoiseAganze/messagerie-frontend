@@ -11,6 +11,18 @@
     {
       "src": "/register",
       "dest": "/"
+    },
+    {
+      "src": "/profil",
+      "dest": "/"
+    },
+    {
+      "src": "/user/(.*)",
+      "dest": "/"
+    },
+    {
+      "src": "/conversation/(.*)/(.*)",
+      "dest": "/"
     }
   ]
 }

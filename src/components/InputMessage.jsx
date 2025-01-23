@@ -16,7 +16,7 @@ export default function InputCont({ sendMessage, user_data, id }) {
     }
   };
   return (
-    <div className="p-3 w-full flex justify-center">
+    <div className="p-3 w-full flex justify-center absolute bottom-40 lg:bottom-10">
       <div className="p-3 w-full lg:w-1/2 bg-base-300 rounded-3xl">
         <textarea
           className="textarea mb-1 w-full rounded-3xl bg-base-300 border-none border-0 text-sm"

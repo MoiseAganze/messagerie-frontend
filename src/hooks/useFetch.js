@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { api } from "../config/baseApi";
 
-export const useFetch = (url, nav) => {
+export const useFetch = (url, nav, redirect = true) => {
   const [datas, setDatas] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, seterror] = useState(null);
   useEffect(() => {
     const fetchDatas = async () => {
       await api
@@ -14,7 +15,10 @@ export const useFetch = (url, nav) => {
         })
         .catch((err) => {
           console.log(err);
-          nav("/login");
+          seterror(err);
+          if (redirect) {
+            nav("/login");
+          }
         })
         .finally(() => setLoading(false));
     };
@@ -24,5 +28,6 @@ export const useFetch = (url, nav) => {
   return {
     datas,
     loading,
+    error,
   };
 };

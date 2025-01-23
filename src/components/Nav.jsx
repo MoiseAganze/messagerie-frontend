@@ -1,4 +1,6 @@
-export function Navbar({ titre, handleOpen, online }) {
+import { Link } from "react-router-dom";
+
+export function Navbar({ titre, handleOpen, user_data }) {
   return (
     <div
       className={`navbar bg-base-100 flex ${
@@ -29,14 +31,17 @@ export function Navbar({ titre, handleOpen, online }) {
       {titre && (
         <div className="w-auto flex gap-2 pl-10">
           <span className="text-xl font-semibold text-accent">{titre}</span>
-          {online && <div className="badge badge-success badge-xs -mt-3"></div>}
+          <div className="badge badge-success badge-xs -mt-3"></div>
         </div>
       )}
 
-      <div className="avatar">
-        <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2 cursor-pointer">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-        </div>
+      <div className="avatar placeholder">
+        <Link
+          to={`/profil`}
+          className="bg-orange-700 text-sky-100  w-12 h-12 rounded-full flex justify-center items-center ring"
+        >
+          <span className="text-xl font-bold">{user_data?.name[0]}</span>
+        </Link>
       </div>
     </div>
   );

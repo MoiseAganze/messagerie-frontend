@@ -97,8 +97,6 @@ export default function useSubmit(
         const errorMessage =
           error.response?.data?.message || "Une erreur est survenue.";
         toast.error(errorMessage, { duration: 5000 });
-      })
-      .finally(() => {
         setLoading(false);
       });
   };

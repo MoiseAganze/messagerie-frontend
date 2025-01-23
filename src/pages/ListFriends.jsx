@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { api } from "../config/baseApi";
 import toast, { Toaster } from "react-hot-toast";
 
 const ListFriends = () => {
   const nav = useNavigate();
-
   const { datas, loading } = useFetch("/friends", nav);
 
   const Item = ({ pseudo, avatar, id }) => {
     return (
       <div className="flex justify-between items-center gap-3 border-b border-base-100 p-1">
         <div className="flex gap-2 justify-center items-center">
-          <div className="avatar">
-            <div className="w-14 rounded-full">
-              <img src={`/${avatar}`} />
-            </div>
+          <div className="avatar placeholder">
+            <Link
+              to={`/user/${id}`}
+              className="bg-orange-700 text-sky-100  w-12 h-12 rounded-full flex justify-center items-center"
+            >
+              <span className="text-xl font-bold">{pseudo[0]}</span>
+            </Link>
           </div>
           <div className="flex flex-col gap-1 font-semibold text-sm">
             <p>{pseudo}</p>
@@ -47,7 +49,7 @@ const ListFriends = () => {
           ))}
         </div>
       ) : (
-        <div className="w-full flex flex-col gap-2 pt-5 overflow-x-hidden">
+        <div className="w-full flex flex-col gap-2 pt-5 px-2 overflow-x-hidden">
           {datas?.map((item, i) => (
             <Item
               key={i}

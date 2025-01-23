@@ -4,64 +4,76 @@ import { formatHourMinute } from "../utils/formatsDate";
 import { useFetch } from "../hooks/useFetch";
 import { reduceText } from "../utils/reduceText";
 import { whoIsFriend } from "../utils/whoIsFriend";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../config/baseApi";
+import { userData } from "../hooks/userData";
+import { useSocket } from "../utils/socketContext";
 
-export default function ListConversations({
-  loading,
-  open,
-  setOpen,
-  conversations,
-  setConversation,
-  user_data,
-  setFriend,
-  set_loading_messages,
-  setConversationId,
-}) {
-  const [selected, setSelected] = useState(null);
-  const [loading_click, set_loading_click] = useState(false);
-  const handleSelect = (item) => {
-    setSelected(item);
+export default function ListConversations({ handleOpen }) {
+  const nav = useNavigate();
+  const user_data = userData();
+  const socket = useSocket();
+  const [datas, setDatas] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, seterror] = useState(null);
+  const fetchDatas = async () => {
+    await api
+      .get(`/conversations`)
+      .then((res) => {
+        setDatas(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        seterror(err);
+
+        nav("/login");
+      })
+      .finally(() => setLoading(false));
   };
-  const Message = ({ conversation }) => {
-    const nav = useNavigate();
-    const handleClick = async () => {
-      set_loading_click(true);
+  useEffect(() => {
+    fetchDatas();
+  }, []);
+  useEffect(() => {
+    socket.on("refresh-conv", (data) => {
+      fetchDatas();
+    });
 
-      await api
-        .get(`/messages/${conversation._id}`)
-        .then((res) => {
-          setConversation(res.data);
-          handleSelect(conversation._id);
-          setConversationId(conversation._id);
-          setFriend(whoIsFriend(user_data.id, conversation.participants));
-          set_loading_messages(false);
-          setOpen(false);
-          set_loading_click(false);
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-        .finally(() => set_loading_click(false));
+    // Nettoyage lorsque le composant se démonte
+    return () => {
+      socket.off("refresh-conv");
+      // socket.disconnect();
     };
+  }, [datas]);
+  const Message = ({ conversation }) => {
     return (
       <div
-        onClick={handleClick}
+        onClick={handleOpen}
         className={`
-          ${selected == conversation._id && "bg-base-100"} 
+          ${"bg-base-100"} 
           ${"bg-base-100"} w-full flex justify-start gap-1 rounded-3xl py-2 px-3 cursor-pointer transition hover:translate-x-2`}
       >
-        <div
+        <Link
           role="button"
-          className={`avatar placeholder mr-4 ${1 == 1 && "online"}`}
+          className={`avatar placeholder mr-4 ${
+            whoIsFriend(user_data.id, conversation.participants).status
+          }`}
+          to={`/user/${
+            whoIsFriend(user_data.id, conversation.participants)._id
+          }`}
         >
           <div className="bg-orange-700 text-sky-100  w-12 h-12 rounded-full">
             <span className="text-xl font-bold">
               {whoIsFriend(user_data.id, conversation.participants).name[0]}
             </span>
           </div>
-        </div>
-        <button className="w-full flex flex-col">
+        </Link>
+        <Link
+          to={`/conversation/${conversation._id}/${
+            whoIsFriend(user_data.id, conversation.participants)._id
+          }`}
+          className="w-full flex flex-col"
+        >
           <div className="w-full flex justify-between">
             <p className="text-base font-bold">
               {whoIsFriend(user_data.id, conversation.participants).name}
@@ -87,7 +99,7 @@ export default function ListConversations({
             ) : (
               <p>{reduceText(conversation.lastMessage.text, 20)}</p>
             ))}
-        </button>
+        </Link>
       </div>
     );
   };
@@ -106,16 +118,16 @@ export default function ListConversations({
           ))}
         </div>
       ) : (
-        conversations?.map((item, i) => <Message key={i} conversation={item} />)
+        datas?.map((item, i) => <Message key={i} conversation={item} />)
       )}
-      {loading_click && (
+      {/* {loading_click && (
         <div
           className="w-screen h-screen fixed top-0 left-0 bg-base-300 opacity-50 flex justify-center items-center"
           style={{ zIndex: 9999999 }}
         >
           <span className="loading  loading-lg loading-bars text-accent"></span>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

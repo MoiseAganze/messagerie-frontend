@@ -17,7 +17,7 @@ export default function MessagesCont({ conversation, loading }) {
         >
           {texte}
         </div>
-        <div className="chat-footer opacity-50">{status}</div>
+        {/* <div className="chat-footer opacity-50">{status}</div> */}
       </div>
     );
   };
@@ -34,7 +34,7 @@ export default function MessagesCont({ conversation, loading }) {
       className="w-full h-4/5 lg:h-full overflow-y-auto flex justify-center"
     >
       <div className="w-full lg:w-2/3 flex flex-col gap-2 mb-48 px-4 lg:px-8 pt-10">
-        {conversation.length > 0 ? (
+        {conversation && conversation.length > 0 ? (
           TrieMessage(conversation).map((msg, index) => (
             <div key={index}>
               <div className="w-full flex justify-center items-center gap-1">

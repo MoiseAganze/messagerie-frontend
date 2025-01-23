@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { api } from "../config/baseApi";
 import { Toaster, toast } from "react-hot-toast";
 import { userData } from "../hooks/userData";
-const AddFriend = () => {
+import { send_invit_request } from "../hooks/useSendInvit";
+const AddFriend = ({ user_data }) => {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [link_copied, set_link_copied] = useState(false);
-  const { user_data } = userData();
+
   const handleCopy = async () => {
     try {
       // Copier le texte dans le presse-papier
@@ -25,21 +26,6 @@ const AddFriend = () => {
     } catch (error) {
       console.error("Impossible de coller le texte :", error);
     }
-  };
-  const send_request = async () => {
-    setLoading(true);
-    await api
-      .post(`/send-invitation/${inputValue}`)
-      .then((res) => {
-        if (res.status == 200) {
-          toast.success("invitation envoyé avec succès", { duration: 2000 });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error(error.response.data.message, { duration: 6000 });
-      })
-      .finally(() => setLoading(false));
   };
   return (
     <dialog id="my_modal_1" className="modal w-screen md:w-auto">
@@ -76,7 +62,7 @@ const AddFriend = () => {
               </div>
             </div>
             <button
-              onClick={send_request}
+              onClick={() => send_invit_request(inputValue, setLoading)}
               disabled={loading}
               className="btn bg-warning text-base-100 hover:text-warning flex justify-between max-w-80"
             >
