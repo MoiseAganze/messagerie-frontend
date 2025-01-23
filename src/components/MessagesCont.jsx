@@ -37,9 +37,9 @@ export default function MessagesCont({ conversation, loading }) {
   return (
     <div
       ref={boxRef}
-      className="w-full h-[calc(100vh-200px)] overflow-y-auto" // Modifié ici
+      className="w-full h-full overflow-y-auto" // Modifié ici
     >
-      <div className="w-full h-auto flex flex-col justify-end gap-2 px-4 lg:px-8 pt-10 mb-20">
+      <div className="w-full h-auto flex flex-col justify-end gap-2 px-4 lg:px-8 pt-10 mb-20 lg:mb-52">
         {conversation && conversation.length > 0 ? (
           TrieMessage(conversation).map((msgGroup, index) => (
             <div key={index}>

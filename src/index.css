@@ -2371,6 +2371,14 @@ input.tab:checked + .tab-content,
   font-size: 0.875rem;
 }
 
+.btn-md {
+  height: 3rem;
+  min-height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 0.875rem;
+}
+
 .btn-square:where(.btn-xs) {
   height: 1.5rem;
   width: 1.5rem;
@@ -2781,6 +2789,10 @@ input.tab:checked + .tab-content,
 
 .top-1 {
   top: 0.25rem;
+}
+
+.bottom-10 {
+  bottom: 2.5rem;
 }
 
 .z-40 {
@@ -3448,6 +3460,14 @@ input.tab:checked + .tab-content,
 
   .lg\:-left-96 {
     left: -24rem;
+  }
+
+  .lg\:mb-40 {
+    margin-bottom: 10rem;
+  }
+
+  .lg\:mb-52 {
+    margin-bottom: 13rem;
   }
 
   .lg\:flex {

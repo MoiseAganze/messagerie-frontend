@@ -120,12 +120,12 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="flex gap-2 px-2">
-            <button className="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2">
+            <button className="btn btn-sm flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2">
               Modifier
             </button>
             <button
               onClick={() => document.getElementById("my_modal_1").showModal()}
-              className="cursor-pointer flex-1 rounded-full bg-red-600 dark:bg-red-800 text-white dark:text-white antialiased font-bold hover:bg-red-800 dark:hover:bg-red-900 px-4 py-2"
+              className="btn btn-sm cursor-pointer flex-1 rounded-full bg-red-600 dark:bg-red-800 text-white dark:text-white antialiased font-bold hover:bg-red-800 dark:hover:bg-red-900 px-4 py-2"
             >
               Se deconnecter
             </button>
@@ -135,7 +135,7 @@ const UserProfile = () => {
                 <p className="py-4">Vous voulez vraiment vous deconnecter ?</p>
                 <div className="modal-action">
                   <button
-                    className="btn btn-error"
+                    className="btn btn-md btn-error"
                     disabled={loading_dec}
                     onClick={deconnect}
                   >
@@ -143,7 +143,7 @@ const UserProfile = () => {
                   </button>
 
                   <form method="dialog">
-                    <button disabled={loading_dec} className="btn">
+                    <button disabled={loading_dec} className="btn btn-md">
                       fermer
                     </button>
                   </form>

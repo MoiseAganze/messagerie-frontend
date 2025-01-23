@@ -63,7 +63,7 @@ export default function Messagerie() {
         <div className="w-full flex flex-col justify-start items-center">
           <Navbar
             handleOpen={handleOpen}
-            titre={"Messagerie"}
+            titre={"ZapChat"}
             user_data={user_data}
           />
           <Outlet />
