@@ -53,7 +53,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="w-full h-screen dark:bg-gray-700 bg-gray-200 pt-12">
+    <div className="w-full h-screen dark:bg-gray-700 bg-gray-200 pt-12 px-2">
       <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg relative">
         {/* Bouton de partage (modifié) */}
         <button

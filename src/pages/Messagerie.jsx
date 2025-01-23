@@ -24,15 +24,22 @@ export default function Messagerie() {
   const [side_index, set_side_index] = useState(0);
   const socket = useSocket();
   useEffect(() => {
-    if (user_data) {
-      socket.emit("user-connected", user_data.id);
-
-      // Nettoyage lorsque le composant se démonte
-      return () => {
-        socket.emit("user-disconnect", user_data.id);
-      };
+    if (!socket.connected) {
+      socket.connect();
     }
-  }, []);
+    console.log("User data:", user_data); // Vérifiez si les données sont correctes
+    if (user_data?.id) {
+      socket.emit("user-connected", user_data.id);
+    } else {
+      console.warn("User ID manquant, socket.emit non envoyé.");
+    }
+
+    // Nettoyage lors du démontage
+    return () => {
+      socket.disconnect();
+    };
+  }, [user_data]); // Dépendance à `user_data`
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);

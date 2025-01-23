@@ -11,7 +11,7 @@ const AllProfile = () => {
   const [loading_req, set_loading_req] = useState(false);
 
   return (
-    <div className="w-full h-screen dark:bg-gray-700 bg-gray-200 pt-12">
+    <div className="w-full h-screen dark:bg-gray-700 bg-gray-200 pt-12 px-2">
       {loading ? (
         <div className="min-w-20 h-20 flex justify-center items-center">
           <span className="loading loading-ball bg-info loading-lg"></span>
