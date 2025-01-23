@@ -57,7 +57,9 @@ export default function Messagerie() {
             <Navbar2 set_side_index={set_side_index} />
             {side_index == 0 && <ListConversations handleOpen={handleOpen} />}
             {side_index == 1 && <ListFriends />}
-            {side_index == 2 && <ListFriendRequests />}
+            {side_index == 2 && (
+              <ListFriendRequests set_side_index={set_side_index} />
+            )}
           </div>
         </div>
         <div className="w-full flex flex-col justify-start items-center">

@@ -15,7 +15,7 @@ const ListFriends = () => {
           <div className="avatar placeholder">
             <Link
               to={`/user/${id}`}
-              className="bg-orange-700 text-sky-100  w-12 h-12 rounded-full flex justify-center items-center"
+              className="bg-orange-700 text-sky-100  w-10 h-10 rounded-full flex justify-center items-center"
             >
               <span className="text-xl font-bold">{pseudo[0]}</span>
             </Link>
@@ -24,9 +24,6 @@ const ListFriends = () => {
             <p>{pseudo}</p>
           </div>
         </div>
-        <button className="btn btn-circle btn-ghost">
-          <img src="/mess.png" className="w-6 h-6" alt="" />
-        </button>
       </div>
     );
   };
