@@ -65,14 +65,6 @@ export function Navbar2({ set_side_index }) {
           <img src="/invite.png" className="w-10 h-10" alt="" />
         </button>
       </div>
-      <div className="tooltip tooltip-right" data-tip="Ajouter un ami">
-        <button
-          className="btn btn-circle "
-          onClick={() => document.getElementById("my_modal_1").showModal()}
-        >
-          <img src="/add.png" className="w-10 h-10" alt="" />
-        </button>
-      </div>
     </div>
   );
 }

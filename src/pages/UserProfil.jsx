@@ -20,9 +20,76 @@ const UserProfile = () => {
       set_loading(false);
     }
   };
+  const [copied, setCopied] = useState(false);
+
+  // Vérifie si c'est un mobile
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  };
+
+  // Génère l'URL du profil
+  const profileUrl = `${window.location.origin}/user/${user_data?.id}`;
+
+  const handleShare = () => {
+    if (isMobile() && navigator.share) {
+      // Partage natif sur mobile
+      navigator.share({
+        title: `Profil de ${user_data?.name}`,
+        url: profileUrl,
+      });
+    } else {
+      // Ouvre le modal pour desktop
+      document.getElementById("my_modal_share").showModal();
+    }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(profileUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
   return (
     <div className="w-full h-screen dark:bg-gray-700 bg-gray-200 pt-12">
-      <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+      <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg relative">
+        {/* Bouton de partage (modifié) */}
+        <button
+          className="btn btn-ghost btn-circle absolute right-4 top-1 p-1"
+          onClick={handleShare}
+        >
+          <img src="/share.png" className="w-10 h-10" alt="Partager" />
+        </button>
+
+        {/* Modal de partage (modifié) */}
+        <dialog id="my_modal_share" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Partager le profil</h3>
+            <div className="py-4">
+              <div className="flex flex-col gap-4">
+                <p>Lien du profil :</p>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    readOnly
+                    value={profileUrl}
+                    className="input input-bordered flex-1"
+                  />
+                  <button onClick={copyToClipboard} className="btn btn-primary">
+                    {copied ? "Copié !" : "Copier"}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="modal-action">
+              <form method="dialog">
+                <button className="btn">Fermer</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
         <div className="border-b px-4 pb-6">
           <div className="text-center my-4">
             <div className="avatar placeholder">
