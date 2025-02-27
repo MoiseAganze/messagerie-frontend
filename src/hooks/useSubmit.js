@@ -88,14 +88,7 @@ export default function useSubmit(
 
           toast.success(success_message + ",patientez...", { duration: 5000 });
           setTimeout(() => {
-            const redirect_saved = localStorage.getItem("redirect");
-
-            if (redirect_saved) {
-              nav(redirect_saved);
-              localStorage.removeItem("redirect");
-            } else {
-              nav(redirect);
-            }
+            nav(redirect);
           }, 5000);
         }
       })

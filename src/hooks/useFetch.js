@@ -13,15 +13,9 @@ export const useFetch = (url, nav, redirect = true) => {
         .get(url)
         .then((res) => {
           setDatas(res.data);
-          console.log(res.data);
         })
         .catch((err) => {
-          console.log(location.pathname);
           seterror(err);
-          if (redirect) {
-            localStorage.setItem("redirect", location.pathname);
-            nav("/login");
-          }
         })
         .finally(() => setLoading(false));
     };

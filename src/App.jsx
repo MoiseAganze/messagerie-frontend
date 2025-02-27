@@ -7,11 +7,13 @@ import AllProfile from "./pages/AllProfil";
 import Messages from "./pages/Messages";
 import ListConversations from "./pages/ListConversations";
 import AccueilMobile from "./pages/AccueilMobile";
+import Test from "./Test";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/test" element={<Test />} />
         <Route path={"/"} element={<Messagerie />}>
           <Route path={""} element={<AccueilMobile />} />
           <Route path={"conversation/:id/:friendid"} element={<Messages />} />
